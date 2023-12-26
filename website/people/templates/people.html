@@ -6,10 +6,17 @@ People
 
 {% block content %}
 
-<div align="right" padding="10px">
+<div align="right" >
     <a role="button" class="btn btn-primary" href="{{url_for('people.add_player')}}">
         + New Player
     </a>
+</div>
+<div>
+<ul class="list-group mt-2">
+    {%for name in players%}
+    <li class="list-group-item">{{name.capitalize()}} </li>
+    {%endfor%}
+</ul>
 </div>
 
 {% endblock %}
