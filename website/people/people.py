@@ -16,9 +16,14 @@ def people():
     players = [name for name in result.scalars()]
     return render_template('people.html', players=players)
 
+
 @people_bp.route('/change-player-name', methods=['GET', 'POST'])
 def edit_player():
-    return render_template()
+    form = NewPlayerForm()
+    if form.validate_on_submit():
+        name = form.name.data.lower()
+
+    return render_template('add_player.html', form=form)
 
 
 @people_bp.route('/add-player', methods=['GET', 'POST'])

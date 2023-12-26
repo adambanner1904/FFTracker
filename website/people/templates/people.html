@@ -11,12 +11,16 @@ People
         + New Player
     </a>
 </div>
-<div>
-<ul class="list-group mt-2">
+<div class="list-group mt-2">
     {%for name in players%}
-    <li class="list-group-item">{{name.capitalize()}} </li>
+    <div class="list-group-item">{{name.capitalize()}}
+        <a class="btn btn-sm btn-secondary " style="margin-left: 1" href="{{url_for('people.edit_player')}}">Change Name</a>
+        <a class="btn btn-sm btn-secondary" href="#">+Payment</a>
+        <a class="btn btn-sm btn-secondary" href="#">+Credit</a>
+        <a class="btn btn-sm btn-secondary" href="#">+Fine</a>
+    </div>
+
     {%endfor%}
-</ul>
 </div>
 
 {% endblock %}
