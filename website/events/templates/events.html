@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-
+Events
 {% endblock %}
 
 {% block content %}
-
+<div class="btn-group d-flex" role="group" aria-label="Add event group">
+    <a role="button" class="btn btn-primary" href="{{url_for('events.add_training')}}">+ training session</a>
+    <a role="button" class="btn btn-primary" href="{{url_for('events.add_game')}}">+ game</a>
+</div>
 {% endblock %}
