@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash
 from website.models import Player
 from website import db
+from .forms import NewPlayerForm
 
 people_bp = Blueprint('people', __name__, template_folder='templates',
                       static_folder='static', static_url_path='assets')
@@ -13,14 +14,16 @@ def people():
 
 @people_bp.route('/add-player', methods=['GET', 'POST'])
 def add_player():
-    if request.method == 'POST':
+    form = NewPlayerForm()
 
-        name = request.form.get("name")
-
+    name = form.name.data
+    player_exists = Player.query.filter_by(name=name).first()
+    if player_exists:
+        flash("Player already exists", category='error')
+    else:
         new_player = Player(name=name, credit=0)
-
         db.session.add(new_player)
         db.session.commit()
         flash('New player added!')
-        return render_template('add_player.html')
-    return render_template('add_player.html')
+
+    return render_template('add_player.html', form=form)
