@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, flash
+from website.models import Player
+from website import db
 
 people_bp = Blueprint('people', __name__, template_folder='templates',
                       static_folder='static', static_url_path='assets')
@@ -13,6 +15,12 @@ def people():
 def add_player():
     if request.method == 'POST':
 
-        name = request.form.get('name')
-        print(name)
+        name = request.form.get("name")
+
+        new_player = Player(name=name, credit=0)
+
+        db.session.add(new_player)
+        db.session.commit()
+        flash('New player added!')
+        return render_template('add_player.html')
     return render_template('add_player.html')
