@@ -5,9 +5,6 @@ People
 {% endblock %}
 
 {% block content %}
-<html>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</html>
 
 <div align="right" >
     <a role="button" class="btn btn-primary" href="{{url_for('people.add_player')}}">
@@ -15,13 +12,12 @@ People
     </a>
 </div>
 <div class="list-group mt-2">
-    {%for name in players%}
+    {%for player in players%}
     <div class="list-group-item">
-        <div class="name"> {{name.capitalize()}} </div>
-        <a class="btn btn-sm btn-secondary " href="{{url_for('people.edit_player')}}">Change Name</a>
+        <div class="name"> {{player.name.capitalize()}} {{player.balance}}</div>
         <a class="btn btn-sm btn-secondary" href="#">+Payment</a>
-        <a class="btn btn-sm btn-secondary" href="#">+Credit</a>
         <a class="btn btn-sm btn-secondary" href="#">+Fine</a>
+        <a class="btn btn-sm btn-secondary" href="{{url_for('people.edit_person')}}/{{player.name}}" style="float: right;">Edit player</a>
     </div>
     {%endfor%}
 </div>

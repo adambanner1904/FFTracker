@@ -22,7 +22,7 @@ def create_app():
     app.register_blueprint(people_bp, url_prefix='/people')
     app.register_blueprint(views)
 
-    from .models import Player
+    from .models import Club, Income, Expense, Player, Payment, Debt, Game, Training
 
     create_database(app)
 
@@ -32,6 +32,13 @@ def create_app():
 def create_database(app):
     if not path.exists("website/" + DB_NAME):
         with app.app_context():
+            # db.drop_all()
             db.create_all()
-        print("Created database!")
 
+            # from .models import Club
+            #
+            # club = Club(name='DY Athletic')
+            # db.session.add(club)
+            # db.session.commit()
+            # print('DY created')
+        print("Created database!")

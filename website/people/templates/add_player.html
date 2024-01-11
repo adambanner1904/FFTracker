@@ -7,10 +7,15 @@ Add player
 {% block content %}
 <form method="POST">
 <!--    Define all the labels for the rows-->
-    <p>Name</p>
     {{form.hidden_tag()}}
-<!--    {{form.name.label}}-->
-    {{form.name()}}
+    <div>
+        {{form.name.label}}
+        {{form.name()}}
+    </div>
+    <div>
+        {{form.balance.label}}
+        {{form.balance()}}
+    </div>
     {{form.submit()}}
 
 </form>
