@@ -13,9 +13,9 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
-    from website.events.events import events_bp
-    from website.people.people import people_bp
-    from website.kitty.kitty import kitty_bp
+    from website.events import events_bp
+    from website.people import people_bp
+    from website.kitty import kitty_bp
 
     app.register_blueprint(events_bp, url_prefix='/events')
     app.register_blueprint(kitty_bp, url_prefix='/kitty')
